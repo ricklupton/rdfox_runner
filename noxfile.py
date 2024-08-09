@@ -5,7 +5,7 @@ Configure environments to test rdfox runner across multiple RDFox versions.
 import nox
 
 
-RDFOX_VERSIONS = ["6.3.1", "6.3.2", "7.0"]
+RDFOX_VERSIONS = ["6.3.2", "7.0", "7.1.1"]
 
 RDFOX_VERSIONS_IDS = [f"rdfox{version.replace('.', '')}" for version in RDFOX_VERSIONS]
 
