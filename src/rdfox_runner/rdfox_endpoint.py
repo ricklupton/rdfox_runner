@@ -130,7 +130,7 @@ class RDFoxEndpoint:
         info["version"] = parse_version(info["version"])
         return info
 
-    def query_raw(self, query, answer_format=None):
+    def query_raw(self, query, *args, answer_format=None, initBindings=None, **kwargs):
         """Query the RDFox SPARQL endpoint directly.
 
         Unlike `query`, the result is the raw response from RDFox, not an
@@ -144,7 +144,9 @@ class RDFoxEndpoint:
             f"PREFIX {k}: <{v}>"
             for k, v in self.namespaces.items()
         ])
-
+        if initBindings:
+            for var_name, val in initBindings.items():
+                query = query.replace("?" + var_name, val) 
         params = {
             "query": query_prefixes + query,
         }
